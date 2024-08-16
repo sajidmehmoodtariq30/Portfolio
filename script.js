@@ -22,7 +22,7 @@ navbarBtn.addEventListener('click', () => {
   header.style.display = header.style.display === 'block' ? 'none' : 'block';
   if (header.style.display === 'block') {
     if (isDarkTheme === true) {
-        navbarBtn.classList.add("bg");
+      navbarBtn.classList.add("bg");
     }
   } else {
     navbarBtn.classList.remove("bg");
@@ -39,10 +39,10 @@ function toggleTheme() {
     header.style.background = "#e6dddd";
     theme_img.src = "images/moon.png";
     // iterate over the elements with class
-    Array.prototype.forEach.call(document.getElementsByClassName('skill'), function(element) {
+    Array.prototype.forEach.call(document.getElementsByClassName('skill'), function (element) {
       element.style.background = "#e6dddd";
     });
-    Array.prototype.forEach.call(document.getElementsByClassName('project'), function(element) {
+    Array.prototype.forEach.call(document.getElementsByClassName('project'), function (element) {
       element.style.background = "#e6dddd";
     });
     document.getElementById("contact-form").style.background = "#e6dddd";
@@ -56,13 +56,13 @@ function toggleTheme() {
     theme_img.src = "images/sun.png";
     header.style.background = "#2a5e5e";
     // iterate over the elements with class
-    Array.prototype.forEach.call(document.getElementsByClassName('skill'), function(element) {
+    Array.prototype.forEach.call(document.getElementsByClassName('skill'), function (element) {
       element.style.background = "#838080";
     });
-    Array.prototype.forEach.call(document.getElementsByClassName('project'), function(element) {
+    Array.prototype.forEach.call(document.getElementsByClassName('project'), function (element) {
       element.style.background = "#838080";
     });
-    Array.prototype.forEach.call(document.getElementsByClassName('contact-form-info'), function(element) {
+    Array.prototype.forEach.call(document.getElementsByClassName('contact-form-info'), function (element) {
       element.style.color = "#838080";
     });
     document.getElementById("contact-form").style.background = "#838080";
@@ -89,7 +89,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, {
   root: null,
-  threshold: 0.6, // trigger when element is fully visible
+  threshold: 0.4, // trigger when element is fully visible
 });
 
 animatedElements.forEach((element) => {

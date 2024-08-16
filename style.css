@@ -19,18 +19,47 @@
 
 .animated-element {
     opacity: 0;
-    /* initial state: hidden */
-    transform: translateX(-15px);
-    /* initial state: moved down */
-    transition: opacity 0.5s, transform 0.5s;
-    /* animation duration */
+    transition: opacity 0.5s;
 }
 
 .animated-element.in-view {
     opacity: 1;
-    /* final state: visible */
+}
+
+.animated-element.slide-in-from-left {
+    transform: translateX(-50%);
+    transition: transform 0.5s;
+}
+
+.animated-element.slide-in-from-left.in-view {
+    transform: translateX(0);
+}
+
+.animated-element.slide-in-from-right {
+    transform: translateX(50%);
+    transition: transform 0.5s;
+}
+
+.animated-element.slide-in-from-right.in-view {
+    transform: translateX(0);
+}
+
+.animated-element.slide-in-from-bottom {
+    transform: translateY(50%);
+    transition: transform 0.5s;
+}
+
+.animated-element.slide-in-from-bottom.in-view {
     transform: translateY(0);
-    /* final state: moved up */
+}
+
+.animated-element.slide-in-from-top {
+    transform: translateY(-50%);
+    transition: transform 0.5s;
+}
+
+.animated-element.slide-in-from-top.in-view {
+    transform: translateY(0);
 }
 
 
@@ -166,6 +195,7 @@ main p {
 
 #about {
     padding: 5rem 0;
+    overflow-x: hidden;
 }
 
 .about {
@@ -195,6 +225,7 @@ main p {
 /* Skills Section */
 #skills {
     padding: 5rem 3rem;
+    overflow-x: hidden;
 }
 
 .skills {
@@ -210,6 +241,34 @@ main p {
     margin: 1.4rem 0rem 1.4rem 2rem;
     border-radius: 20px;
     padding: 2.3rem 1.4rem;
+    transition: transform 0.3s;
+}
+
+.skill:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.skill:hover.animate-bounce {
+    animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    75% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(-2px);
+    }
 }
 
 .contact-info img {
@@ -231,6 +290,7 @@ main p {
 /* Projects */
 #projects {
     padding: 5rem 3rem;
+    overflow-x: hidden;
 }
 
 .projects {
@@ -245,12 +305,12 @@ main p {
 .project {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     height: 450px;
     width: 800px;
     margin-top: 1rem;
     border-radius: 10px;
-    ;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
 }
 
@@ -263,11 +323,12 @@ main p {
 
 .p-text {
     text-align: center;
-    padding: 1rem;
+    padding: 0.7rem;
 }
 
 #contact {
     padding: 5rem 3rem;
+    overflow-x: hidden;
 }
 
 .contact-info {
@@ -435,25 +496,7 @@ footer p {
     }
 }
 
-@media (max-width: 580px) {
-    main h1 {
-        font-size: 2rem;
-    }
-
-    main h2 {
-        font-size: 1.6rem;
-    }
-
-    main p {
-        font-size: 1.2rem;
-        text-align: center;
-        font-family: "Edu AU VIC WA NT Hand", cursive;
-    }
-
-    .title {
-        text-align: center;
-    }
-
+@media (max-width: 720px) {
     .about {
         flex-direction: column;
         padding: 0;
@@ -474,6 +517,28 @@ footer p {
         font-size: 1rem;
         padding: 0 0.5rem;
     }
+}
+
+
+@media (max-width: 620px) {
+    main h1 {
+        font-size: 2rem;
+    }
+
+    main h2 {
+        font-size: 1.6rem;
+    }
+
+    main p {
+        font-size: 1.2rem;
+        text-align: center;
+        font-family: "Edu AU VIC WA NT Hand", cursive;
+    }
+
+    .title {
+        text-align: center;
+    }
+
 
     .projects {
         margin-left: 0;
