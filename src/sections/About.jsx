@@ -17,148 +17,102 @@ import MapImage from "@/assets/images/map.png"
 import SmileImage from "@/assets/images/memoji-smile.png"
 import CardHeader from '@/components/CardHeader'
 import ToolBoxItems from '@/components/ToolBoxItems'
-import {motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRef } from 'react'
 
-
 const toolboxItems = [
-    {
-        title: "JavaScript",
-        icon: JavaScriptIcon
-    },
-    {
-        title: "Nextjs",
-        icon: NextIcon
-    },
-    {
-        title: "React",
-        icon: ReactIcon
-    },
-    {
-        title: "Tailwind css",
-        icon: TailwindIcon
-    },
-    {
-        title: "MongoDB",
-        icon: MongoIcon
-    },
-    {
-        title: "Postman",
-        icon: PostmanIcon
-    },
-    {
-        title: "Vscode",
-        icon: CodeIcon
-    },
-    {
-        title: "Github",
-        icon: GithubIcon
-    },
-    {
-        title: "Chrome",
-        icon: ChromeIcon
-    }
+    { title: "JavaScript", icon: JavaScriptIcon },
+    { title: "Next.js", icon: NextIcon },
+    { title: "React", icon: ReactIcon },
+    { title: "Tailwind CSS", icon: TailwindIcon },
+    { title: "MongoDB", icon: MongoIcon },
+    { title: "Postman", icon: PostmanIcon },
+    { title: "VSCode", icon: CodeIcon },
+    { title: "GitHub", icon: GithubIcon },
+    { title: "Chrome", icon: ChromeIcon }
 ]
 
 const hobbies = [
-    {
-        title: "Coding",
-        emoji: "🧑‍💻",
-        top: "5%",
-        left: "5%"
-    },
-    {
-        title: "Gaming",
-        emoji: "🎮",
-        top: "5%",
-        left: "50%"
-    },
-    {
-        title: "Photography",
-        emoji: "📸",
-        top: "35%",
-        left: "10%"
-    },
-    {
-        title: "Hiking",
-        emoji: "🧗",
-        top: "65%",
-        left: "65%"
-    },
-    {
-        title: "Music",
-        emoji: "🎼",
-        top: "35%",
-        left: "70%"
-    },
-    {
-        title: "Reading",
-        emoji: "📚",
-        top: "65%",
-        left: "5%"
-    },
-    {
-        title: "Badminton",
-        emoji: "🏸",
-        top: "35%",
-        left: "40%"
-    },
+    { title: "Coding", emoji: "🧑‍💻", top: "8%", left: "8%" },
+    { title: "Gaming", emoji: "🎮", top: "8%", left: "52%" },
+    { title: "Photography", emoji: "📸", top: "38%", left: "12%" },
+    { title: "Hiking", emoji: "🧗", top: "68%", left: "62%" },
+    { title: "Music", emoji: "🎼", top: "38%", left: "68%" },
+    { title: "Reading", emoji: "📚", top: "68%", left: "8%" },
+    { title: "Badminton", emoji: "🏸", top: "38%", left: "42%" }
 ]
 
 const About = () => {
     const constraintRef = useRef(null);
-        return (
-                <div id='about' className='py-20'>
-                        <div className='container'>
-                                <SectionHeader eyebrow="About" title="A Glimpse into my World" description="Learn more about who I am, what I do, and what inspires me." />
-                                <p className="text-gray-700 text-lg mt-8 max-w-3xl mx-auto text-center transition-colors duration-500">
-                                    I have hands-on experience deploying projects on both <b>Vercel</b> and <b>Ubuntu VPS</b>, including configuring domains, SSL, and server environments. My journey into server management even led me to learn about whitelisting and blocking IPs—something I picked up while running a Minecraft server on Ubuntu! I’m also proud to have achieved a <b>100% SEO score</b> for this portfolio, and I regularly tackle technical challenges like CORS, authentication, and other backend/frontend hurdles that come with building and shipping real-world apps.
-                                </p>
-                                <div className='mt-20 flex flex-col gap-8'>
-                    <div className='md:grid md:grid-cols-5 lg:grid-cols-3 md:gap-8'>
-                        <Card className="h-[320px] md:col-span-2 lg:col-span-1">
-                            <CardHeader title="My Reads" description="Explore the books shaping my prespectives" />
-                            <div className='w-40 mx-auto mt-8'>
-                                <Image src={bookImage} alt='Book Cover' />
+    return (
+        <div id='about' className='py-20 lg:py-28 relative'>
+            <div className='container'>
+                <SectionHeader eyebrow="About Me" title="A Glimpse Into My World" description="Learn more about who I am, what drives my work, and what inspires me outside of code." />
+                
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="glass-card-premium p-6 md:p-8 rounded-3xl mt-10 max-w-4xl mx-auto border border-emerald-500/20"
+                >
+                    <p className="text-white/80 text-base md:text-lg leading-relaxed text-center font-normal">
+                        I have hands-on experience deploying full-stack production systems on both <b className="text-emerald-300 font-semibold">Vercel</b> and <b className="text-cyan-300 font-semibold">Ubuntu VPS</b>—managing domain configs, SSL encryption, and server security. My background includes whitelisting/firewall hardening (learned while hosting Minecraft servers on Linux), scoring a <b className="text-emerald-400 font-bold">100% Lighthouse SEO score</b>, and systematically engineering around complex web engineering hurdles like CORS, JWT auth, and state synchronization.
+                    </p>
+                </motion.div>
+
+                <div className='mt-16 flex flex-col gap-8'>
+                    <div className='grid grid-cols-1 md:grid-cols-5 lg:grid-cols-3 gap-8'>
+                        {/* Reads Card */}
+                        <Card className="h-[340px] md:col-span-2 lg:col-span-1 flex flex-col justify-between">
+                            <CardHeader title="My Reads" description="Books shaping my perspective on software & life" />
+                            <div className='w-36 mx-auto mb-6 relative group'>
+                                <div className="absolute inset-0 bg-emerald-500/20 rounded-xl blur-lg group-hover:bg-emerald-500/30 transition-all"></div>
+                                <Image src={bookImage} alt='Book Cover' className="relative z-10 drop-shadow-xl hover:scale-105 transition-transform duration-300" />
                             </div>
                         </Card>
-                        <Card className="h-[320px] p-0 md:col-span-3 lg:col-span-2">
-                            <div>
-                                <CardHeader title="My ToolBox" description="Explore the technologies and tools used to craft exceptional digital experiences."
-                                />
+
+                        {/* Toolbox Card */}
+                        <Card className="h-[340px] p-0 md:col-span-3 lg:col-span-2 flex flex-col justify-between">
+                            <CardHeader title="My ToolBox" description="Technologies & frameworks I leverage to craft digital experiences" />
+                            <div className="my-auto py-2">
+                                <ToolBoxItems toolboxItems={toolboxItems} className="my-2" itemsWrapperClassName="animate-move-left" />
+                                <ToolBoxItems toolboxItems={toolboxItems} className="my-2" itemsWrapperClassName="-translate-x-1/2 animate-move-right" />
                             </div>
-                            <ToolBoxItems toolboxItems={toolboxItems} className="mt-6" itemsWrapperClassName="animate-move-left" />
-                            <ToolBoxItems toolboxItems={toolboxItems} className="mt-6" itemsWrapperClassName="-translate-x-1/2 animate-move-right" />
                         </Card>
                     </div>
-                    <div className='md:grid md:grid-cols-5 md:gap-8 lg:grid-cols-3'>
-                        <Card className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
-                            <CardHeader title="Beyond the code" description="Explore my intrests beyond the digital realm" className="px-6 py-6" />
-                            <div className='relative flex-1' ref={constraintRef}>
-                                {
-                                    hobbies.map(hobby => (
-                                        <motion.div key={hobby.title} className='inline-flex gap-2 px-6 bg-gradient-to-r items-center from-emerald-300 to-sky-400 rounded-full py-1.5 absolute text-gray-900'
-                                            style={{
-                                                left: hobby.left,
-                                                top: hobby.top
-                                            }}
-                                            drag
-                                            dragConstraints={constraintRef}
-                                            >
-                                            <span className='font-me'>{hobby.title}</span>
-                                            <span>{hobby.emoji}</span>
-                                        </motion.div>
-                                    ))
-                                }
-                            </div>
 
+                    <div className='grid grid-cols-1 md:grid-cols-5 lg:grid-cols-3 gap-8'>
+                        {/* Hobbies Card */}
+                        <Card className="h-[340px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
+                            <CardHeader title="Beyond the Code" description="Drag to explore my passions and interests outside engineering" className="px-6 py-6" />
+                            <div className='relative flex-1 cursor-grab active:cursor-grabbing overflow-hidden' ref={constraintRef}>
+                                {hobbies.map(hobby => (
+                                    <motion.div 
+                                        key={hobby.title} 
+                                        className='inline-flex gap-2 px-5 py-2 items-center bg-emerald-500/10 border border-emerald-400/30 rounded-full text-emerald-300 backdrop-blur-md shadow-lg font-semibold text-sm hover:border-emerald-400/60 absolute'
+                                        style={{ left: hobby.left, top: hobby.top }}
+                                        drag
+                                        dragConstraints={constraintRef}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <span>{hobby.title}</span>
+                                        <span>{hobby.emoji}</span>
+                                    </motion.div>
+                                ))}
+                            </div>
                         </Card>
-                        <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1">
-                            <Image src={MapImage} alt='map' className='h-full w-full object- object-left-top' />
-                            <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full  after:content-[""] after:absolute after:inset-0 after:outline-2 after:aoutline-offset-2 after:rounded-full after:outline-gray-400/30'>
-                                <div className='absolute inset-0 rounded-full  bg-gradient-to-r from-emerald-300 to-sky-400 -z-10'></div>
-                                <div className='absolute inset-0 rounded-full  bg-gradient-to-r from-emerald-300 to-sky-400 -z-20 animate-ping [animation-duration:2s]'></div>
-                                <Image src={SmileImage} alt='smile' className='size-20' />
+
+                        {/* Location Map Card */}
+                        <Card className="h-[340px] p-0 relative md:col-span-2 lg:col-span-1 overflow-hidden">
+                            <Image src={MapImage} alt='Location map' className='h-full w-full object-cover object-left-top filter contrast-125 brightness-90' />
+                            <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full flex items-center justify-center'>
+                                <div className='absolute inset-0 rounded-full bg-emerald-400/30 -z-10 animate-ping [animation-duration:2.5s]'></div>
+                                <div className='absolute inset-0 rounded-full bg-emerald-500/20 -z-20 animate-pulse'></div>
+                                <div className="size-16 rounded-full bg-gray-950 border border-emerald-400/50 p-1 flex items-center justify-center shadow-2xl">
+                                    <Image src={SmileImage} alt='Avatar' className='size-14' />
+                                </div>
                             </div>
                         </Card>
                     </div>
@@ -168,4 +122,4 @@ const About = () => {
     )
 }
 
-export default About
+export default About

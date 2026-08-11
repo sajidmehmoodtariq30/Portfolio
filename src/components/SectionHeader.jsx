@@ -6,16 +6,17 @@ const SectionHeader = ({
     description
 }) => {
     return (
-        <>
-            <div className="flex justify-center">
-                <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-400 to-sky-400 text-transparent bg-clip-text">
+        <div className="flex flex-col items-center text-center">
+            <div className="flex justify-center mb-3">
+                <span className="badge-glow-emerald px-4 py-1 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest text-emerald-300">
                     {eyebrow}
-                </p>
+                </span>
             </div>
-            <h2 className="font-serif text-3xl text-center md:text-5xl mt-6">{title}</h2>
-            <p className="text-center text-white/60 mt-4 md:text-large max-w-xl mx-auto lg:text-xl">{description}</p>
-        </>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient-white mt-2">{title}</h2>
+            <p className="text-center text-white/70 mt-4 text-base max-w-xl mx-auto md:text-lg leading-relaxed">{description}</p>
+        </div>
     )
 }
 
 export default SectionHeader
+
