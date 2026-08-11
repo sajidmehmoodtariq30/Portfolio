@@ -3,10 +3,12 @@
 import Image from "next/image";
 import SectionHeader from "@/components/SectionHeader";
 import Card from "@/components/Card";
+import ProjectModal from "@/components/ProjectModal";
 import CheckIcon from "@/assets/icons/check-circle.svg";
 import ArrowUprightIcon from "@/assets/icons/arrow-up-right.svg";
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { playClick, playPop } from '@/lib/sound';
 
 // Import project images
 import portal from '@/assets/images/portal.png';
@@ -25,6 +27,7 @@ const imageMap = {
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -39,7 +42,6 @@ const Projects = () => {
             .slice(0, 4);
           setProjects(visibleProjects);
         } else {
-          // Fallback to default projects if API fails
           console.warn('Failed to load projects from API, using fallback');
           setProjects([]);
         }
@@ -93,40 +95,53 @@ const Projects = () => {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex gap-4 mt-6 mb-4 flex-col sm:flex-row">
+
+                    {/* Action Controls */}
+                    <div className="flex gap-3 mt-6 mb-4 flex-wrap">
+                      <motion.button 
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => { playPop(); setSelectedProject(project); }}
+                        className="bg-gradient-to-r from-emerald-400 to-teal-400 text-gray-950 px-5 h-11 rounded-xl font-bold inline-flex items-center justify-center text-xs md:text-sm shadow-md hover:brightness-110 transition-all"
+                      >
+                        <span>⚙️ View Case Study</span>
+                      </motion.button>
+
                       {project.link && (
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                        <a href={project.link} target="_blank" rel="noopener noreferrer">
                           <motion.button 
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                            className="bg-white px-6 text-gray-950 h-12 w-full rounded-xl font-bold inline-flex items-center justify-center border border-white hover:bg-gray-100 transition-colors shadow-md"
+                            onClick={() => playClick()}
+                            className="bg-white/10 text-white px-5 h-11 rounded-xl font-semibold inline-flex items-center justify-center border border-white/20 hover:bg-white/20 text-xs md:text-sm transition-colors"
                           >
-                            <ArrowUprightIcon className="size-5 mr-2" />
-                            <span>Visit Live Site</span>
+                            <ArrowUprightIcon className="size-4 mr-1.5" />
+                            <span>Live Site</span>
                           </motion.button>
                         </a>
                       )}
+
                       {project.github && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
                           <motion.button 
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                            className="text-white px-6 bg-white/10 backdrop-blur-sm h-12 w-full rounded-xl font-semibold inline-flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
+                            onClick={() => playClick()}
+                            className="bg-white/10 text-white px-5 h-11 rounded-xl font-semibold inline-flex items-center justify-center border border-white/20 hover:bg-white/20 text-xs md:text-sm transition-colors"
                           >
-                            <ArrowUprightIcon className="size-5 mr-2" />
-                            <span>Visit on GitHub</span>
+                            <ArrowUprightIcon className="size-4 mr-1.5" />
+                            <span>GitHub</span>
                           </motion.button>
                         </a>
                       )}
                     </div>
                   </div>
-                  <div className="relative mt-8 lg:mt-0 lg:-mr-24 overflow-hidden rounded-t-3xl">
+
+                  <div className="relative mt-8 lg:mt-0 lg:-mr-24 overflow-hidden rounded-t-3xl cursor-pointer" onClick={() => { playPop(); setSelectedProject(project); }}>
                     {imageMap[project.image] && (
                       <Image 
                         src={imageMap[project.image]} 
-                        className="mt-4 -mb-6 rounded-3xl object-cover shadow-2xl" 
+                        className="mt-4 -mb-6 rounded-3xl object-cover shadow-2xl hover:scale-105 transition-transform duration-500" 
                         alt={project.title} 
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                         quality={85}
@@ -136,7 +151,6 @@ const Projects = () => {
                   </div>
                 </div>
               </Card>
-
             ))}
             
             {projects.length === 0 && !loading && (
@@ -148,12 +162,20 @@ const Projects = () => {
           </div>
         )}
       </div>
+
       <div className="mt-16 text-center">
         <p className="text-white/70">Want to see more of my work? Check out my <a href="/projects" className="underline hover:text-emerald-400 font-medium transition-colors duration-300">Projects</a>.</p>
       </div>
+
+      {/* Case Study Architecture Modal */}
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </section>
   );
 }
 
-
-export default Projects
+export default Projects
+
